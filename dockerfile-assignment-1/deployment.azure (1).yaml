@@ -1,19 +1,19 @@
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
 kind: Deployment 
 metadata: 
-  name: angular-deployment 
+  name: node-deployment 
 spec: 
   selector: 
     matchLabels: 
-      app: angular 
-  replicas: 5 # tells deployment to run 2 pods matching the template 
+      app: node 
+  replicas: 3 # tells deployment to run 2 pods matching the template 
   template:
     metadata: 
       labels: 
-        app: angular 
+        app: node 
     spec: 
       containers: 
-      - name: angular 
+      - name: node 
         image: houssemdocker/angular-app:#{Build.BuildId}#
         ports: 
         - containerPort: 80 
@@ -22,10 +22,10 @@ spec:
 kind: Service 
 apiVersion: v1 
 metadata: 
-  name: angular-service 
+  name: node-service 
 spec: 
   selector: 
-    app: angular 
+    app: node 
   ports: 
   - protocol: TCP 
     port: 80 
